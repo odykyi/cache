@@ -1,0 +1,52 @@
+{
+  "name": "node-mongo-cache",
+  "version": "0.0.1",
+  "description": "link [https://nodejs.org](https://nodejs.org)",
+  "main": "bin/run.js",
+  "config": {
+    "1engine": "",
+    "1dockerHostUrl": ""
+  },
+  "scripts": {
+    "//prestart": "npm run validateSwagger && npm run fix",
+    "//db:create": "node_modules/.bin/create_database",
+    "//db:drop": "node_modules/.bin/drop_database",
+    "1start": "NODE_ENV=aws-dev pm2 start app.js -f --name my-api",
+    "start": "node $npm_package_main",
+    "validateSwagger": "swagger-tools validate ./src/middleware/swagger/swaggerDocs.yaml",
+    "fix": "eslint --fix .",
+    "predocker": "docker build -t $npm_package_config_engine .",
+    "docker": "docker tag $npm_package_config_engine $npm_package_config_dockerHostUrl/$npm_package_config_engine:$npm_package_version",
+    "postdocker": "docker push $npm_package_config_dockerHostUrl/$npm_package_config_engine:$npm_package_version"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/helmet": "0.0.37",
+    "@types/morgan": "^1.7.35",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.0",
+    "express-session": "^1.15.6",
+    "js-yaml": "^3.11.0",
+    "mongoose": "^5.1.2",
+    "morgan": "^1.9.0",
+    "swagger-express-middleware": "^1.0.0-alpha.12",
+    "swagger-ui-express": "^2.0.15"
+  },
+  "devDependencies": {
+    "eslint": "^4.18.2",
+    "eslint-config-google": "^0.9.1",
+    "swagger-tools": "^0.10.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com"
+  },
+  "bugs": {
+    "url": "git+https://github.com"
+  },
+  "homepage": "https://github.com"
+}
